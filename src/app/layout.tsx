@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import DrawerBar from "@/layouts/DrawerBar";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="en" >
+      <body className={`${geistSans.variable} ${geistMono.variable}`} >
+        
+        <DrawerBar>
+          {children}
+        </DrawerBar>
       </body>
     </html>
   );
