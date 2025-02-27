@@ -19,9 +19,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Avatar, Button, Collapse, Menu, MenuItem, Tooltip } from '@mui/material';
+import { Avatar, Button, Collapse, FormControlLabel, Menu, MenuItem, Switch, Tooltip } from '@mui/material';
 import Link from 'next/link';
 import { Add, ExpandLess, ExpandMore, Flaky } from '@mui/icons-material';
+import DarkMode from '@/components/DarkMode';
 
 const drawerWidth = 240;
 
@@ -98,7 +99,12 @@ const subPages = [
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const DrawerBar: React.FC<{children: React.ReactNode}> = ({children}) => {
+interface DrawerBarProps {
+  children:React.ReactNode;
+  toggleTheme: () => void; // 테마 변경 함수 전달
+}
+
+const DrawerBar = ({children, toggleTheme}:DrawerBarProps) => {
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const theme = useTheme();
@@ -155,6 +161,12 @@ const DrawerBar: React.FC<{children: React.ReactNode}> = ({children}) => {
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
               <Link href='/'>QMS</Link>
             </Typography>
+            {/* 다크 모드 토글 버튼 */}
+            <DarkMode  toggleTheme={toggleTheme} />
+            {/* <Button variant="contained" onClick={toggleTheme}>
+              Toggle Dark Mode
+            </Button>
+            <Switch color="default" onClick={toggleTheme}/> */}
             {/* 로그인 전*/}
             <Button color="inherit">Login</Button>
             {/* 로그인 후 */}
@@ -268,9 +280,11 @@ const DrawerBar: React.FC<{children: React.ReactNode}> = ({children}) => {
           </List>
         </Drawer>
 
-        <Main open={open}>
+        <Main open={open} sx={{}}>
           <DrawerHeader />
-          {children}
+          <div style={{}}>
+            {children}
+          </div>
         </Main>
       </Box>
     </div>

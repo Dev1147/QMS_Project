@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DrawerBar from "@/layouts/DrawerBar";
+import CllientThemeProvider from "@/providers/CllientThemeProvider";
 
 
 const geistSans = Geist({
@@ -25,13 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <html lang="en" >
       <body className={`${geistSans.variable} ${geistMono.variable}`} >
-        
-        <DrawerBar>
+        <CllientThemeProvider>     
+        {/* <DrawerBar> */}
           {children}
-        </DrawerBar>
+        {/* </DrawerBar> */}
+        </CllientThemeProvider>
       </body>
     </html>
+
   );
 }
