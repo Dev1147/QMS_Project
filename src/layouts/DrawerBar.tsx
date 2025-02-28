@@ -19,9 +19,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Avatar, Button, Collapse, FormControlLabel, Menu, MenuItem, Switch, Tooltip } from '@mui/material';
+import { Avatar, Button, Collapse, Menu, MenuItem, Tooltip } from '@mui/material';
 import Link from 'next/link';
-import { Add, ExpandLess, ExpandMore, Flaky } from '@mui/icons-material';
+import { Abc, Dashboard, ExpandLess, ExpandMore, Search } from '@mui/icons-material';
 import DarkMode from '@/components/DarkMode';
 
 const drawerWidth = 240;
@@ -86,15 +86,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const pages = [
-  {href:"#", name: '품질검사', icon: <Flaky/>,
-    children:[{href:"#", name: '품질기준서', icon: ""},{href:"#", name: '품질성적서', icon: ""}]
+  {href:"#", name: 'DashBoard', icon: <Dashboard/>,
+    children:[{href:"#", name: 'Sub1', icon: <Dashboard/>},{href:"#", name: 'Sub2', icon: <Dashboard/>}]
   },
   {href:"#", name: 'Pricing'},
   {href:"#", name: 'Blog'}];
 
 const subPages = [
-  {href:"/pages/products", name: '품번/품명 등록', icon: <Add/>},
-  {href:"#", name: '측정장비 등록', icon: <Add/>},
+  {href:"/pages/products", name: 'Search', icon: <Search/>},
+  {href:"#", name: 'ABC', icon: <Abc/>},
 ];  
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -159,7 +159,7 @@ const DrawerBar = ({children, toggleTheme}:DrawerBarProps) => {
                 </IconButton>
               </Tooltip >
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-              <Link href='/'>QMS</Link>
+              <Link href='/'>DashBoard</Link>
             </Typography>
             {/* 다크 모드 토글 버튼 */}
             <DarkMode  toggleTheme={toggleTheme} />
@@ -245,8 +245,9 @@ const DrawerBar = ({children, toggleTheme}:DrawerBarProps) => {
                 {/* 서브메뉴 */}
                 <Collapse in={openMenus[index]} timeout="auto" unmountOnExit>
                 {page.children && page.children.map((child, index) => (
-                  <ListItem key={index} sx={{ pl: 10, pt:0, pb:0 }} >
+                  <ListItem key={index} sx={{ pl: 5, pt:0, pb:0 }} >
                   <ListItemButton component={Link} href={child.href} sx={{pt:0, pb:0 }}>
+                    <ListItemIcon>{child.icon}</ListItemIcon>
                     <ListItemText primary={child.name} />
                   </ListItemButton>
                 </ListItem>
